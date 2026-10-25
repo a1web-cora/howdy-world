@@ -34,7 +34,7 @@ for asset in "${ASSETS[@]}"; do
   if [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
     ok "Pass"
   else
-    ((asset_fails++))
+    asset_fails=$((asset_fails + 1))
     fail "Fail (HTTP $code)"
   fi
 done
@@ -56,7 +56,7 @@ printf "%-45s " "/"
 if [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
   ok "Pass"
 else
-  ((endpoint_fails++))
+  endpoint_fails=$((endpoint_fails + 1))
   fail "Fail (HTTP $code)"
 fi
 
@@ -69,7 +69,7 @@ while IFS= read -r ep; do
   if [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
     ok "Pass"
   else
-    ((endpoint_fails++))
+    endpoint_fails=$((endpoint_fails + 1))
     fail "Fail (HTTP $code)"
   fi
 done < <(discover_endpoints)
