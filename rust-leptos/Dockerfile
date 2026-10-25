@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN rustup target add wasm32-unknown-unknown
-RUN cargo install --locked trunk
+# Pin for rustc 1.93.1; trunk 0.22 requires 1.96.1.
+RUN cargo install --locked trunk --version 0.21.14
 
 COPY . .
 
