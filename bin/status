@@ -70,7 +70,7 @@ if (( DO_HTTP == 1 )); then
     if [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
       ok "HTTP $code"
     else
-      ((fails++))
+      fails=$((fails + 1))
       fail "HTTP $code"
     fi
   done
